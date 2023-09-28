@@ -35,61 +35,73 @@ class ClienteController extends Controller
                ],200);
            }
 
-           public function pesquisarPorParteDoNome($nome){
-            $clientes = Cliente::find($nome);
-            if($clientes== null){
-               return response()->json([
-                'status'=> false,
-                'message'=> "Usuário não encontrado"
-               ]);
-            }
-            return response()->json([
-                'status'=> true,
-                'data'=> $clientes
-            ]);
+           public function pesquisarPorNome(Request $request)
+           {
+               $clientes = Cliente::where('nome', 'like', '%' . $request->nome . '%')->get();
+               if (count($clientes) > 0) {
+                   return response()->json([
+                       'status' => true,
+                       'data' => $clientes
+                   ]);
+               }
+               else{
+                   return response()->json([
+                       'status' => false,
+                       'message' => "Nenhum cliente encontrado"
+                   ]);
+               }
+           }
+
+           public function pesquisarCpf(Request $request)
+           {
+               $clientes = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
+               if (count($clientes) > 0) {
+                   return response()->json([
+                       'status' => true,
+                       'data' => $clientes
+                   ]);
+               }
+               else{
+                   return response()->json([
+                       'status' => false,
+                       'message' => "Nenhum cliente encontrado"
+                   ]);
+               }
+           }
+
+           public function pesquisarCelular(Request $request)
+           {
+               $clientes = Cliente::where('celular', 'like', '%' . $request->celular . '%')->get();
+               if (count($clientes) > 0) {
+                   return response()->json([
+                       'status' => true,
+                       'data' => $clientes
+                   ]);
+               }
+               else{
+                   return response()->json([
+                       'status' => false,
+                       'message' => "Nenhum cliente encontrado"
+                   ]);
+               }
+           }
+
+           public function pesquisarEmail(Request $request)
+           {
+               $clientes = Cliente::where('email', 'like', '%' . $request->email . '%')->get();
+               if (count($clientes) > 0) {
+                   return response()->json([
+                       'status' => true,
+                       'data' => $clientes
+                   ]);
+               }
+               else{
+                   return response()->json([
+                       'status' => false,
+                       'message' => "Nenhum cliente encontrado"
+                   ]);
+               }
+           }
         }
 
-        public function pesquisarCpf($cpf){
-            $clientes = Cliente::find($cpf);
-            if($clientes == null){
-               return response()->json([
-                'status'=> false,
-                'message'=> "Usuário não encontrado"
-               ]);
-            }
-            return response()->json([
-                'status'=> true,
-                'data'=> $clientes
-            ]);
-        }
-
-        public function pesquisarCelular($celular){
-            $clientes = Cliente::find($celular);
-            if($clientes == null){
-               return response()->json([
-                'status'=> false,
-                'message'=> "Usuário não encontrado"
-               ]);
-            }
-            return response()->json([
-                'status'=> true,
-                'data'=> $clientes
-            ]);
-        }
-
-        public function pesquisarEmail($email){
-            $clientes = Cliente::find($email);
-            if($clientes == null){
-               return response()->json([
-                'status'=> false,
-                'message'=> "Usuário não encontrado"
-               ]);
-            }
-            return response()->json([
-                'status'=> true,
-                'data'=> $clientes
-            ]);
-        }
-    
-    
-}
+      

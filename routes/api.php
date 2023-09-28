@@ -29,6 +29,13 @@ Route::put('update', [ServicosController::class, 'update']);
 Route::get('all', [ServicosController::class, 'retornarTodos']);
 
 //rotas do cliente
-Route::post('store',[ClienteController::class,'store']);
+Route::post('cliente/store',[ClienteController::class,'store']);
 
+Route::post('cliente/nome',[ClienteController::class,'pesquisarPorNome']);
+
+Route::post('cliente/cpf',[ClienteController::class,'pesquisarCpf']);
+
+Route::post('cliente/celular',[ClienteController::class,'pesquisarCelular']);
+
+Route::post('cliente/email',[ClienteController::class,'pesquisarEmail']);
 
