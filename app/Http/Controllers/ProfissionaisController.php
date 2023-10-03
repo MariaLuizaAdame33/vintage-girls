@@ -48,7 +48,7 @@ class ProfissionaisController extends Controller
            else{
                return response()->json([
                    'status' => false,
-                   'message' => "Nenhum cliente encontrado"
+                   'message' => "Nenhum profissional encontrado"
                ]);
            }
        }
@@ -65,7 +65,7 @@ class ProfissionaisController extends Controller
            else{
                return response()->json([
                    'status' => false,
-                   'message' => "Nenhum cliente encontrado"
+                   'message' => "Nenhum ´profissional encontrado"
                ]);
            }
        }
@@ -82,7 +82,7 @@ class ProfissionaisController extends Controller
            else{
                return response()->json([
                    'status' => false,
-                   'message' => "Nenhum cliente encontrado"
+                   'message' => "Nenhum profissional encontrado"
                ]);
            }
        }
@@ -99,7 +99,7 @@ class ProfissionaisController extends Controller
            else{
                return response()->json([
                    'status' => false,
-                   'message' => "Nenhum cliente encontrado"
+                   'message' => "Nenhum profissional encontrado"
                ]);
            }
        }
