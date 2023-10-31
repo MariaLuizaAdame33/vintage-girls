@@ -20,18 +20,18 @@ class ServicosController extends Controller
         ]);
         return response()->json([
             "sucess" => true,
-            "message" =>"Usuario Cadrastado com Sucesso",
+            "message" =>"Serviço Cadrastado com Sucesso",
             "data" =>$servicos
         ],200);
 
     }
 
-    public function pesquisarPorNome($nome){
+    public function pesquisaPorNome($nome){
         $servicos = Servicos::find($nome);
         if($servicos == null){
            return response()->json([
             'status'=> false,
-            'message'=> "Usuário não encontrado"
+            'message'=> "Serviço não encontrado"
            ]);
         }
         return response()->json([
@@ -45,12 +45,21 @@ class ServicosController extends Controller
         if($servicos == null){
            return response()->json([
             'status'=> false,
-            'message'=> "Usuário não encontrado"
+            'message'=> "Serviço não encontrado"
            ]);
         }
         return response()->json([
             'status'=> true,
             'data'=> $servicos
+        ]);
+    }
+
+    public function retornarTodos()
+    {
+        $servicos = Servicos::all();
+        return response()->json([
+            'status' => true,
+            'data' => $servicos
         ]);
     }
 

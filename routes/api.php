@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+//Servicos
 Route::post('store',[ServicosController::class,'store']);
 
 Route::post('nome',[ServicosController::class,'pesquisaPorNome']);
@@ -56,5 +56,12 @@ Route::post('profissional/email',[ProfissionaisController::class,'pesquisarEmail
 Route::post('Agenda/store',[AgendaController::class,'store']);
 
 
+
+
+Route::get('cliente/all',[ClienteController::class,'retornarTodos']);
+
+Route::get('profissional/all',[ProfissionaisController::class,'retornarTodos']);
+
+Route::get('servicos/all',[ServicosController::class,'retornarTodos']);
 
 
