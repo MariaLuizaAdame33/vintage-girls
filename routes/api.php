@@ -56,12 +56,27 @@ Route::post('profissional/email',[ProfissionaisController::class,'pesquisarEmail
 Route::post('Agenda/store',[AgendaController::class,'store']);
 
 
-
+///
 
 Route::get('cliente/all',[ClienteController::class,'retornarTodos']);
 
 Route::get('profissional/all',[ProfissionaisController::class,'retornarTodos']);
 
 Route::get('servicos/all',[ServicosController::class,'retornarTodos']);
+
+///
+
+Route::get('cliente/find/{id}',[ClienteController::class,'pesquisarPorId']);
+Route::put('cliente/editar',[ClienteController::class,'editar']);
+
+Route::get('profissional/find/{id}',[ProfissionaisController::class,'pesquisarPorId']);
+Route::put('profissional/editar',[ProfissionaisController::class,'editar']);
+
+Route::get('servicos/find/{id}',[ServicosController::class,'pesquisarPorId']);
+Route::put('servicos/editar',[ServicosController::class,'editar']);
+
+
+
+
 
 

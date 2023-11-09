@@ -54,6 +54,36 @@ class ServicosController extends Controller
         ]);
     }
 
+    public function editar (Request $request){
+        $servicos = Servicos::find($request->id);
+   
+        if(!isset($servicos)){
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Serviço não encontrado'
+            ]);
+        }
+   
+        if (isset($request->nome)){
+            $servicos->nome = $request->nome;
+        }
+       
+        if (isset($request->descricao)){                                                
+            $servicos->descricao = $request->descricao;
+        }
+
+        if (isset($request->duracao)){
+            $servicos->duracao = $request->duracao;
+        }
+
+        if (isset($request->preco)){
+            $servicos->preco = $request->preco;
+        }
+
+      
+    }
+
+
     public function retornarTodos()
     {
         $servicos = Servicos::all();

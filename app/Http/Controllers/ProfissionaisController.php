@@ -104,6 +104,100 @@ class ProfissionaisController extends Controller
            }
        }
 
+       public function editar (Request $request){
+        $profissional = Profissionais::find($request->id);
+   
+        if(!isset($profissional)){
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Profissional não encontrado'
+            ]);
+        }
+   
+        if (isset($request->nome)){
+            $profissional->nome = $request->nome;
+        }
+       
+        if (isset($request->celular)){                                                
+            $profissional->celular = $request->celular;
+        }
+
+        if (isset($request->email)){
+            $profissional->email = $request->email;
+        }
+
+        if (isset($request->cpf)){
+            $profissional->cpf = $request->cpf;
+        }
+
+        if (isset($request->dataNascimento)){
+            $profissional->dataNascimento = $request->dataNascimento;
+        }
+
+        if (isset($request->cidade)){
+            $profissional->cidade = $request->cidade;
+        }
+
+        if (isset($request->estado)){
+            $profissional->estado = $request->estado;
+        }
+
+        if (isset($request->pais)){
+            $profissional->pais = $request->pais;
+        }
+
+        if (isset($request->rua)){
+            $profissional->rua = $request->rua;
+        }
+
+        if (isset($request->numero)){
+            $profissional->numero = $request->numero;
+        }
+
+        if (isset($request->bairro)){
+            $profissional->bairro = $request->bairro;
+        }
+
+        if (isset($request->cep)){
+            $profissional->cep = $request->cep;
+        }
+
+        if (isset($request->complemento)){
+            $profissional->complemento = $request->complemento;
+        }
+
+        if (isset($request->senha)){
+            $profissional->senha = $request->senha;
+        }
+
+        if (isset($request->salario)){
+            $profissional->salario = $request->salario;
+        }
+
+        $profissional->update();
+   
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Profissional atualizado.'
+        ]);
+   
+    }
+
+    public function pesquisarPorId($id){
+        $profissional = Profissionais::find($id);
+        if($profissional == null){
+           return response()->json([
+            'status'=> false,
+            'message'=> "Usuário não encontrado"
+           ]);
+        }
+        return response()->json([
+            'status'=> true,
+            'data'=> $profissional
+        ]);
+    }
+
+
        public function retornarTodos()
        {
            $profissional = Profissionais::all();
