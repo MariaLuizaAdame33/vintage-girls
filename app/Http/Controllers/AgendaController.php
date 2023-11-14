@@ -25,4 +25,87 @@ class AgendaController extends Controller
            ],200);
        }
  
+
+       public function pesquisarPorId($id){
+        $agenda = Agenda::find($id);
+        if($agenda == null){
+           return response()->json([
+            'status'=> false,
+            'message'=> "não encontrado"
+           ]);
+        }
+        return response()->json([
+            'status'=> true,
+            'data'=> $agenda
+        ]);
+    }
+
+    public function editar (Request $request){
+        $agenda = Agenda::find($request->id);
+   
+        if(!isset($agenda)){
+            return response()->json([
+                'status'=> false,
+                'message'=> 'não encontrado'
+            ]);
+        }
+   
+        if (isset($request->profissional)){
+            $agenda->profissional = $request->nome;
+        }
+       
+        if (isset($request->celular)){                                                
+            $agenda->celular = $request->celular;
+        }
+
+        if (isset($request->email)){
+            $agenda->email = $request->email;
+        }
+
+        if (isset($request->cpf)){
+            $agenda->cpf = $request->cpf;
+        }
+
+        if (isset($request->dataNascimento)){
+            $agenda->dataNascimento = $request->dataNascimento;
+        }
+
+        if (isset($request->cidade)){
+            $agenda->cidade = $request->cidade;
+        }
+
+        
+       
+        $agenda->update();
+   
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Profissional atualizado.'
+        ]);
+   
+    }
+
+    public function excluir($id)
+    {
+        $agenda = Agenda::find($id);
+
+        if (!isset($agenda)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Excluido com sucesso"
+
+            ]);
+        }
+
+        $agenda->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "Serviço excluído com sucesso"
+        ]);
+    }
+
+  
+
+
+   
 }

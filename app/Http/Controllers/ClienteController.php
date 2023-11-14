@@ -189,8 +189,26 @@ class ClienteController extends Controller
         ]);
     }
 
+    public function excluir($id){
+        $clientes = Cliente::find($id);
+   
+        if(!isset($clientes)){
+            return response()->json([
+                'status'=>false,
+                'message'=> "Cliente excluido"
+           
+            ]);
+        }
 
-    public function retornarTodos()
+        $clientes->delete();
+        return response()->json([
+            'status'=>true,
+            'message'=>"Cliente excluído com sucesso"
+        ]);
+   
+        }
+
+        public function retornarTodos()
     {
         $clientes = Cliente::all();
         return response()->json([
@@ -199,3 +217,7 @@ class ClienteController extends Controller
         ]);
     }
 }
+
+
+
+   
