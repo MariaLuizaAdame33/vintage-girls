@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServicosFormRequest;
 use App\Models\Servicos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ServicosController extends Controller
 {
@@ -82,6 +83,13 @@ class ServicosController extends Controller
         if (isset($request->preco)) {
             $servicos->preco = $request->preco;
         }
+
+        $servicos->update();
+   
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Serviço atualizado.'
+        ]);
     }
 
     public function excluir($id)
@@ -109,6 +117,40 @@ class ServicosController extends Controller
         return response()->json([
             'status' => true,
             'data' => $servicos
+        ]);
+    }
+
+    public function recuperarSenha(Request $request)
+    {
+
+        $servicos = Servicos::where('cpf', '=', $request->cpf)->first();
+
+        if (!isset($servicos)) {
+            return response()->json([
+                'status' => false,
+                'data' => "Profissional não encontrado"
+
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'password' => Hash::make($servicos->cpf)
+        ]);
+
+    }
+
+    public function pesquisarPorId($id){
+        $servicos = Servicos::find($id);
+        if($servicos == null){
+           return response()->json([
+            'status'=> false,
+            'message'=> "não encontrado"
+           ]);
+        }
+        return response()->json([
+            'status'=> true,
+            'data'=> $servicos
         ]);
     }
 }
