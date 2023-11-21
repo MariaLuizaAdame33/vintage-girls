@@ -27,36 +27,73 @@ class ServicosController extends Controller
         ], 200);
     }
 
-    public function pesquisaPorNome($nome)
+    public function pesquisarPorNome(Request $request)
     {
-        $servicos = Servicos::find($nome);
-        if ($servicos == null) {
+        $servicos = Servicos::where('nome', 'like', '%' . $request->nome . '%')->get();
+        if (count($servicos) > 0) {
             return response()->json([
-                'status' => false,
-                'message' => "Serviço não encontrado"
+                'status' => true,
+                'data' => $servicos
             ]);
         }
-        return response()->json([
-            'status' => true,
-            'data' => $servicos
-        ]);
-    }
-
-    public function pesquisarPorDescricao($descricao)
-    {
-        $servicos = Servicos::find($descricao);
-        if ($servicos == null) {
+        else{
             return response()->json([
                 'status' => false,
-                'message' => "Serviço não encontrado"
+                'message' => "Nenhum Serviço encontrado"
             ]);
         }
-        return response()->json([
-            'status' => true,
-            'data' => $servicos
-        ]);
     }
 
+    public function pesquisarCpf(Request $request)
+    {
+        $servicos = Servicos::where('cpf', 'like', '%' . $request->cpf . '%')->get();
+        if (count($servicos) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servicos
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => "Nenhum Serviço encontrado"
+            ]);
+        }
+    }
+
+    public function pesquisarCelular(Request $request)
+    {
+        $servicos = Servicos::where('celular', 'like', '%' . $request->celular . '%')->get();
+        if (count($servicos) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servicos
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => "Nenhum Serviço encontrado"
+            ]);
+        }
+    }
+
+    public function pesquisarEmail(Request $request)
+    {
+        $servicos = Servicos::where('email', 'like', '%' . $request->email . '%')->get();
+        if (count($servicos) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servicos
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => "Nenhum profissional encontrado"
+            ]);
+        }
+    }
     public function editar(Request $request)
     {
         $servicos = Servicos::find($request->id);

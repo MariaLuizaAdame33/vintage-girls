@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //Servicos
 Route::post('store',[ServicosController::class,'store']);
 
-Route::post('servicos/nome',[ServicosController::class,'pesquisaPorNome']);
+Route::post('servicos/nome',[ServicosController::class,'pesquisarPorNome']);
 
 Route::delete('remover/{id}', [ServicosController::class, 'excluir']);
 
