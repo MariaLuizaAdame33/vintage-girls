@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agenda', function (Blueprint $table) {
+        Schema::create('agendas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('profissional_id')->unique()->nullable(false);
-            $table->bigInteger('cliente_id')->nullable(false);
-            $table->bigInteger('servico_id')->nullable(false);
-            $table->date('data')->nullable(false);
-            $table->string('horario')->nullable(false);
+            $table->bigInteger('cliente_id')->nullable(true);
+            $table->bigInteger('servico_id')->nullable(true);
+            $table->dateTime('horario_data')->nullable(false);
             $table->string('tipo_pagamento')->nullable(false);
-            $table->decimal('valor')->nullable(false);
+            $table->decimal('valor')->nullable(true);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agenda');
+        Schema::dropIfExists('agendas');
     }
 };

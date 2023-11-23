@@ -10,13 +10,12 @@ class AgendaController extends Controller
 {
     public function store(AgendaFormRequest $request){
         $agenda = Agenda::create([
-           'profissional_id'=> $request->cliente_id,
-           'cliente_id'=> $request->profissional_id,
-           'data'=> $request->data,
-           'horario'=> $request->horario,
+           'profissional_id'=> $request->profissional_id,
+           'cliente_id'=> $request->cliente_id,
+           'horario_data'=> $request->horario_data,
            'servico_id'=> $request->servico_id,
            'tipo_pagamento'=> $request->tipo_pagamento,
-           'valor'=> $request->Valor
+           'valor'=> $request->valor
         ]);
            return response()->json([
                "success" => true,
@@ -104,6 +103,16 @@ class AgendaController extends Controller
             'message' => "Serviço excluído com sucesso"
         ]);
     }
+
+    public function retornarTodos()
+       {
+           $agenda = Agenda::all();
+           return response()->json([
+               'status' => true,
+               'data' => $agenda
+           ]);
+       }
+
 
   
 

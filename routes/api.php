@@ -87,13 +87,15 @@ Route::delete('profissional/excluir/{id}',[ProfissionaisController::class,'exclu
 
 
 //rota agenda
-Route::get('agenda/store',[AgendaController::class,'store']);
+Route::post('agenda/store',[AgendaController::class,'store']);
 
-Route::get('agenda/codigo',[AgendaController::class,'pesquisarPorId']);
+Route::get('agenda/find/{id}',[AgendaController::class,'pesquisarPorId']);
 
 Route::get('agenda/editar',[AgendaController::class,'editar']);
 
 Route::get('agenda/excluir',[AgendaController::class,'excluir']);
+
+Route::get('agenda/all',[AgendaController::class,'retornarTodos']);
 
 
 
