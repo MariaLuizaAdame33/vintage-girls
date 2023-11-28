@@ -58,7 +58,7 @@ Route::get('cliente/find/{id}',[ClienteController::class,'pesquisarPorId']);
 
 Route::put('cliente/editar',[ClienteController::class,'editar']);
 
-Route::get('cliente/senha',[ClienteController::class,'recuperarSenha']);
+Route::put('cliente/senha',[ClienteController::class,'recuperarSenha']);
 
 Route::delete('cliente/excluir/{id}',[ClienteController::class,'excluir']);
 
@@ -91,9 +91,9 @@ Route::post('agenda/store',[AgendaController::class,'store']);
 
 Route::get('agenda/find/{id}',[AgendaController::class,'pesquisarPorId']);
 
-Route::get('agenda/editar',[AgendaController::class,'editar']);
+Route::put('agenda/editar',[AgendaController::class,'editar']);
 
-Route::get('agenda/excluir',[AgendaController::class,'excluir']);
+Route::get('agenda/excluir/{id}',[AgendaController::class,'excluir']);
 
 Route::get('agenda/all',[AgendaController::class,'retornarTodos']);
 
