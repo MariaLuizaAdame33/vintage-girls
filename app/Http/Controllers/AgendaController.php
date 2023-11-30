@@ -23,7 +23,17 @@ class AgendaController extends Controller
             ]);
         }
 
-        if (count($agenda) <= 0) {
+
+
+        $agendaExistente = Agenda::where('profissional_id', $request->profissional_id)->where('horario_data', $request->horario_data)->first();
+
+
+        if ($agendaExistente) {
+            return response()->json([
+                "status" => false,
+                "message" => "Já existe uma agenda cadastrada para essa data e profissional."
+            ], 400);
+        }
 
         $agenda = Agenda::create([
             'profissional_id' => $request->profissional_id,
@@ -41,7 +51,7 @@ class AgendaController extends Controller
             "data" => $agenda
 
         ], 200);
-    }
+    
     }
 
 
