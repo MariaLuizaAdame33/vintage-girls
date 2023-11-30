@@ -34,8 +34,6 @@ Route::put('servicos/editar',[ServicosController::class,'editar']);
 
 Route::get('servicos/all',[ServicosController::class,'retornarTodos']);
 
-Route::get('servicos/senha',[ServicosController::class,'recuperarSenha']);
-
 Route::delete('servicos/excluir/{id}',[ServicosController::class,'excluir']);
 
 
@@ -58,7 +56,7 @@ Route::get('cliente/find/{id}',[ClienteController::class,'pesquisarPorId']);
 
 Route::put('cliente/editar',[ClienteController::class,'editar']);
 
-Route::put('cliente/senha',[ClienteController::class,'recuperarSenha']);
+Route::post('cliente/senha',[ClienteController::class,'recuperarSenha']);
 
 Route::delete('cliente/excluir/{id}',[ClienteController::class,'excluir']);
 
@@ -81,7 +79,7 @@ Route::put('profissional/editar',[ProfissionaisController::class,'editar']);
 
 Route::get('profissional/all',[ProfissionaisController::class,'retornarTodos']);
 
-Route::get('profissional/senha',[ProfissionaisController::class,'recuperarSenha']);
+Route::post('profissional/senha',[ProfissionaisController::class,'recuperarSenha']);
 
 Route::delete('profissional/excluir/{id}',[ProfissionaisController::class,'excluir']);
 

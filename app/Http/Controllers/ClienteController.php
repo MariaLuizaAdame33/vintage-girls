@@ -220,12 +220,12 @@ class ClienteController extends Controller
     public function recuperarSenha(Request $request)
     {
 
-        $clientes = Cliente::where('cpf', '=', $request->cpf)->first();
+        $clientes = Cliente::where('email', '=', $request->email)->first();
 
         if (!isset($clientes)) {
             return response()->json([
                 'status' => false,
-                'data' => "Profissional não encontrado"
+                'data' => "Cliente não encontrado"
 
             ]);
         }

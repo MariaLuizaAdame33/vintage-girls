@@ -230,7 +230,7 @@ class ProfissionaisController extends Controller
         public function recuperarSenha(Request $request)
     {
 
-        $profissional = Profissionais::where('cpf', '=', $request->cpf)->first();
+        $profissional = Profissionais::where('email', '=', $request->email)->first();
 
         if (!isset($profissional)) {
             return response()->json([

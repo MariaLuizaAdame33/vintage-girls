@@ -61,6 +61,23 @@ class ServicosController extends Controller
         }
     }
 
+    public function pesquisarPorDescricao(Request $request)
+    {
+        $servicos = Servicos::where('descricao', 'like', '%' . $request->descricao . '%')->get();
+        if (count($servicos) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servicos
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => "Nenhum Serviço encontrado"
+            ]);
+        }
+    }
+
     public function pesquisarCelular(Request $request)
     {
         $servicos = Servicos::where('celular', 'like', '%' . $request->celular . '%')->get();
@@ -157,25 +174,6 @@ class ServicosController extends Controller
         ]);
     }
 
-    public function recuperarSenha(Request $request)
-    {
-
-        $servicos = Servicos::where('cpf', '=', $request->cpf)->first();
-
-        if (!isset($servicos)) {
-            return response()->json([
-                'status' => false,
-                'data' => "Profissional não encontrado"
-
-            ]);
-        }
-
-        return response()->json([
-            'status' => true,
-            'password' => Hash::make($servicos->cpf)
-        ]);
-
-    }
 
     public function pesquisarPorId($id){
         $servicos = Servicos::find($id);

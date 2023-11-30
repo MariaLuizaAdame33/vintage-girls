@@ -12,8 +12,8 @@ COMANDOS CMD
 
 ### `php artisan migrate`
 
-### `git config --global user.name "marileoncio"`
+### `git config --global user.name "MariaLuizaAdame"`
 
-### `git config --global user.email "mariana.timoteo19@yahoo.com"`
+### `git config --global user.email "maluzinha.adame@gmail.com"`
 
 ### `php artisan serve`
